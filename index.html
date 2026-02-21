@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>You Da Bomb 💣</title>
+	<link rel="stylesheet" href="styles.css" />
+	<!-- Font Awesome for icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+	<!-- Google Font -->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Nunito:wght@400;700&display=swap"
+		rel="stylesheet" />
+</head>
+
+<body>
+
+	<!-- ========== PAGE 1: Greeting ========== -->
+	<div class="page active" id="page1">
+		<div class="bubbles" id="bubbles1"></div>
+
+		<div class="card" id="card1">
+			<h1 class="title">Hail, good fellow!</h1>
+			<p class="subtitle">What say thy name is?</p>
+
+			<div class="input-wrap">
+				<i class="fa-solid fa-feather-pointed input-icon"></i>
+				<input type="text" id="nameInput" placeholder="Enter thy name..." maxlength="30" />
+			</div>
+
+			<button class="btn" id="nextBtn" onclick="goToPage2()">
+				Next <i class="fa-solid fa-arrow-right"></i>
+			</button>
+
+			<div class="rainbow-bounce"></div>
+		</div>
+	</div>
+
+	<!-- ========== PAGE 2: Rainbow Swirls ========== -->
+	<div class="page" id="page2">
+		<canvas id="rainbowCanvas"></canvas>
+
+		<div class="card swirl-card" id="card2">
+			<div class="heart-symbol">♥</div>
+			<label class="swirl-label" id="loveLabel">I love you because...</label>
+			<textarea id="complimentInput" class="compliment-input" readonly rows="1"></textarea>
+			<button class="btn rainbow-btn" onclick="generateCompliment()">
+				Click for more ego boosts
+			</button>
+			<button class="btn rainbow-btn" onclick="goToPage3()" style="margin-top: 12px;">
+				Continue to celebration
+			</button>
+		</div>
+	</div>
+
+	<!-- ========== PAGE 3: Celebration ========== -->
+	<div class="page" id="page3">
+		<canvas id="confettiCanvas"></canvas>
+
+		<div class="bomb-card" id="bombCard">
+			<h1 class="bomb-text">YOU DA BOMB!</h1>
+			<p class="bomb-name" id="bombName"></p>
+			<p class="bomb-reason" id="bombReason"></p>
+			<button class="btn restart-btn" onclick="restart()">
+				Start Over <i class="fa-solid fa-rotate-right"></i>
+			</button>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
