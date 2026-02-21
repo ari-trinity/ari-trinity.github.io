@@ -162,16 +162,22 @@ const generalCompliments = [
 ];
 
 // ===== COMPLIMENT GENERATOR =====
+let complimentIndex = 0;
+let lastComplimentList = null;
+
 function generateCompliment() {
   const name = document.getElementById("nameInput").value.trim().toLowerCase();
+  const complimentsToUse = personalizedCompliments[name] || generalCompliments;
 
-  // Check if there are personalized compliments for this name
-  let complimentsToUse = personalizedCompliments[name] || generalCompliments;
+  // Reset index if switching to a different person's list
+  if (complimentsToUse !== lastComplimentList) {
+    complimentIndex = 0;
+    lastComplimentList = complimentsToUse;
+  }
 
-  const randomCompliment =
-    complimentsToUse[Math.floor(Math.random() * complimentsToUse.length)];
   const el = document.getElementById("complimentInput");
-  el.value = randomCompliment;
+  el.value = complimentsToUse[complimentIndex % complimentsToUse.length];
+  complimentIndex++;
   autoResizeCompliment(el);
 }
 
