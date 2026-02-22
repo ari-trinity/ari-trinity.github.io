@@ -1,6 +1,6 @@
-// ===== BUBBLE GENERATOR (Page 1) =====
-function createBubbles() {
-  const container = document.getElementById("bubbles1");
+// ===== BUBBLE GENERATOR =====
+function createBubbles(containerId) {
+  const container = document.getElementById(containerId);
   const colors = [
     "#ff6ec7",
     "#60a5fa",
@@ -26,7 +26,8 @@ function createBubbles() {
   }
 }
 
-createBubbles();
+createBubbles("bubbles1");
+createBubbles("bubbles2");
 
 // ===== PERSONALIZED COMPLIMENTS DATABASE =====
 const personalizedCompliments = {
@@ -169,27 +170,23 @@ function generateCompliment() {
   const name = document.getElementById("nameInput").value.trim().toLowerCase();
   const complimentsToUse = personalizedCompliments[name] || generalCompliments;
 
-  // Reset index if switching to a different person's list
   if (complimentsToUse !== lastComplimentList) {
     complimentIndex = 0;
     lastComplimentList = complimentsToUse;
   }
 
-  const el = document.getElementById("complimentInput");
-  el.value = complimentsToUse[complimentIndex % complimentsToUse.length];
+  lastGeneratedCompliment = complimentsToUse[complimentIndex % complimentsToUse.length];
   complimentIndex++;
-  autoResizeCompliment(el);
+
+  const el = document.getElementById("complimentInput");
+  if (el) {
+    el.value = lastGeneratedCompliment;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  }
 }
 
-function autoResizeCompliment(el) {
-  el.style.height = "auto";
-  el.style.height = el.scrollHeight + "px";
-}
-
-// Initialize with one compliment on page load
-window.addEventListener("DOMContentLoaded", () => {
-  generateCompliment();
-});
+let lastGeneratedCompliment = "";
 
 // ===== NAVIGATE: PAGE 1 → PAGE 2 =====
 function goToPage2() {
@@ -201,7 +198,7 @@ function goToPage2() {
 
   // Update the love label with their name
   document.getElementById("loveLabel").textContent =
-    `${name}, I love you because...`;
+    "I'm so happy you're here!";
 
   // Generate initial compliment
   generateCompliment();
@@ -211,8 +208,6 @@ function goToPage2() {
   const p2 = document.getElementById("page2");
   p2.classList.add("active");
 
-  // Start rainbow swirl canvas
-  startRainbowSwirl();
 }
 
 // ===== SHAKE INPUT ANIMATION =====
@@ -241,72 +236,13 @@ function shakeInput() {
   }, 1500);
 }
 
-// ===== RAINBOW SWIRL CANVAS =====
-function startRainbowSwirl() {
-  const canvas = document.getElementById("rainbowCanvas");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-
-  let angle = 0;
-
-  function drawSwirl() {
-    ctx.fillStyle = "rgba(0,0,0,0.04)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
-
-    for (let i = 0; i < 6; i++) {
-      const hue = (angle * 2 + i * 60) % 360;
-      const radius = 120 + i * 40;
-      const x = cx + Math.cos((angle + i * 1.05) * 0.02 * Math.PI) * radius;
-      const y = cy + Math.sin((angle + i * 1.05) * 0.02 * Math.PI) * radius;
-
-      const grad = ctx.createRadialGradient(x, y, 0, x, y, 80 + i * 15);
-      grad.addColorStop(0, `hsla(${hue}, 100%, 70%, 0.9)`);
-      grad.addColorStop(1, `hsla(${hue}, 100%, 50%, 0)`);
-
-      ctx.beginPath();
-      ctx.arc(x, y, 80 + i * 15, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-    }
-
-    // Extra spiraling dots
-    for (let j = 0; j < 120; j++) {
-      const hue = (angle + j * 3) % 360;
-      const r = j * 2.5;
-      const spin = angle * 0.04 + j * 0.15;
-      const x = cx + Math.cos(spin) * r;
-      const y = cy + Math.sin(spin) * r;
-      const size = Math.max(0.5, 3 - j * 0.02);
-
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${hue}, 100%, 65%, 0.8)`;
-      ctx.fill();
-    }
-
-    angle++;
-    requestAnimationFrame(drawSwirl);
-  }
-
-  drawSwirl();
-}
-
 // ===== NAVIGATE: PAGE 2 → PAGE 3 =====
 function goToPage3() {
   const name = document.getElementById("nameInput").value.trim();
 
-  document.getElementById("bombName").textContent = name ? `✨ ${name} ✨` : "";
-  document.getElementById("bombReason").textContent = "";
+  document.getElementById("bombText").textContent = name
+    ? `Go Seize the Day, ${name}`
+    : "Go Seize the Day";
 
   document.getElementById("page2").classList.remove("active");
   const p3 = document.getElementById("page3");
@@ -323,6 +259,9 @@ function startConfetti() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+
   const colors = [
     "#ff6ec7",
     "#ffe66d",
@@ -334,16 +273,20 @@ function startConfetti() {
   ];
   const pieces = [];
 
-  for (let i = 0; i < 160; i++) {
+  for (let i = 0; i < 200; i++) {
+    const burstAngle = Math.random() * Math.PI * 2;
+    const burstSpeed = Math.random() * 12 + 4;
     pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height - canvas.height,
+      x: cx,
+      y: cy,
+      vx: Math.cos(burstAngle) * burstSpeed,
+      vy: Math.sin(burstAngle) * burstSpeed,
       size: Math.random() * 10 + 5,
       color: colors[Math.floor(Math.random() * colors.length)],
-      speed: Math.random() * 4 + 2,
       spin: Math.random() * 0.2 - 0.1,
       angle: Math.random() * Math.PI * 2,
-      drift: Math.random() * 2 - 1,
+      gravity: 0.04 + Math.random() * 0.02,
+      friction: 0.985,
       shape: Math.random() > 0.5 ? "rect" : "circle",
     });
   }
@@ -352,13 +295,18 @@ function startConfetti() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     pieces.forEach((p) => {
-      p.y += p.speed;
-      p.x += p.drift;
+      p.vx *= p.friction;
+      p.vy *= p.friction;
+      p.vy += p.gravity;
+      p.x += p.vx;
+      p.y += p.vy;
       p.angle += p.spin;
 
       if (p.y > canvas.height + 20) {
         p.y = -20;
         p.x = Math.random() * canvas.width;
+        p.vx = Math.random() * 2 - 1;
+        p.vy = Math.random() * 1.5 + 0.5;
       }
 
       ctx.save();
