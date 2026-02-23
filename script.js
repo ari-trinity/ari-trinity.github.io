@@ -217,6 +217,13 @@ const personalizedCompliments = {
     "You think in systems while everyone else is still thinking in steps.",
     "The agents you build today will outlast any single product. That's legacy work.",
   ],
+  max: [
+    "The patterns? Immaculate. The colors? Unapologetic. The vibe? \"I woke up like this and also wrote three full-stack applications before breakfast.\"",
+    "They didn't just walk into the room — they arrived. Hair freshly reinvented, patterns clashing in the most intentional way possible, radiating the energy of someone who has debugged their entire personality and shipped a flawless release.",
+    "Max said: \"Why pick one hair color when you can pick ALL of them?\" And then applied that same energy to teaching — covering every concept, every edge case, every confused student... with a smile.",
+    "Asked the same question five times? Max will explain it six. Broke the code AGAIN? Max is already pulling up the solution WITH annotations. Max doesn't just meet you where you are — they decorate that spot and make it feel like home.",
+    "New hair? New era. New outfit pattern? New lesson dropping. Max is proof that you can constantly evolve, constantly reinvent yourself, and still be the most reliable person in the room.",
+  ],
 };
 
 // ===== GENERAL COMPLIMENTS (Fallback) =====
@@ -448,6 +455,27 @@ const personalizedJokes = {
     "You're so fine, even mirrors do a double take.",
     "The fire department called — they said YOU'RE the fire.",
     "You don't serve looks, you serve entire BUFFETS.",
+  ],
+  max: [
+    "A SQL query walks into a bar, walks up to two tables and asks... \"Can I join you?\"",
+    "Why did the programmer quit their job? Because they didn't get arrays. (a raise)",
+    "What do you call a programmer from Finland? Nerdic.",
+    "Why do Java developers wear glasses? Because they don't C#.",
+    "There are 10 types of people in the world: Those who understand binary, and those who don't.",
+    "Why was the JavaScript developer sad? Because they didn't know how to null their feelings.",
+    "What's the difference between a dentist and a programmer? A dentist drills into your mouth looking for bugs. A programmer drills into your code looking for the same thing. Neither one ever finds them on the first try.",
+  ],
+  shawn: [
+    "A SQL query walks into a bar, walks up to two tables and asks... \"Can I join you?\"",
+    "Why did the programmer quit their job? Because they didn't get arrays. (a raise)",
+    "What do you call a programmer from Finland? Nerdic.",
+    "Why do Java developers wear glasses? Because they don't C#.",
+    "There are 10 types of people in the world: Those who understand binary, and those who don't.",
+    "Why was the JavaScript developer sad? Because they didn't know how to null their feelings.",
+    "What's the difference between a dentist and a programmer? A dentist drills into your mouth looking for bugs. A programmer drills into your code looking for the same thing. Neither one ever finds them on the first try.",
+    "SHAWN DIDN'T CHOOSE AI. AI CHOSE SHAWN. The bots looked around at all the developers and said: \"No no no... we want THAT one to train us.\" Smart bots. Excellent taste.",
+    "Why does Shawn never get lost? Because they already trained a model on every possible wrong turn. The AI just whispers: \"Recalculating... still Shawn.\"",
+    "Shawn's AI bots after training: \"We have learned human language, logic, and reasoning.\" Shawn: \"Good.\" Bots: \"...We have also learned your coffee order.\" Shawn: \"Outstanding. You pass.\"",
   ],
 };
 
