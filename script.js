@@ -29,6 +29,8 @@ function createBubbles(containerId) {
 createBubbles("bubbles1");
 createBubbles("bubbles2");
 
+let storedName = "";
+
 // ===== PERSONALIZED COMPLIMENTS DATABASE =====
 const personalizedCompliments = {
   avery: [
@@ -218,11 +220,11 @@ const personalizedCompliments = {
     "The agents you build today will outlast any single product. That's legacy work.",
   ],
   max: [
-    "The patterns? Immaculate. The colors? Unapologetic. The vibe? \"I woke up like this and also wrote three full-stack applications before breakfast.\"",
-    "They didn't just walk into the room — they arrived. Hair freshly reinvented, patterns clashing in the most intentional way possible, radiating the energy of someone who has debugged their entire personality and shipped a flawless release.",
-    "Max said: \"Why pick one hair color when you can pick ALL of them?\" And then applied that same energy to teaching — covering every concept, every edge case, every confused student... with a smile.",
-    "Asked the same question five times? Max will explain it six. Broke the code AGAIN? Max is already pulling up the solution WITH annotations. Max doesn't just meet you where you are — they decorate that spot and make it feel like home.",
-    "New hair? New era. New outfit pattern? New lesson dropping. Max is proof that you can constantly evolve, constantly reinvent yourself, and still be the most reliable person in the room.",
+    "The patterns? Immaculate. The colors? Unapologetic. Max woke up like this — and shipped three apps before breakfast.",
+    "Max didn't walk into the room. They arrived. Hair reinvented. Outfit intentional. Energy: fully debugged and flawlessly deployed. 🌈",
+    "Why pick one hair color when you can pick ALL of them? Max applied that same energy to teaching — every concept, every student, every time. ✨",
+    "Ask the same question five times? Max explains it six. They don't just meet you where you are — they decorate the spot. 🏳️‍🌈💖",
+    "New hair. New era. New lesson dropping. Max proves you can reinvent yourself daily and still be the most reliable person in the room.",
   ],
 };
 
@@ -250,8 +252,7 @@ let complimentIndex = 0;
 let lastComplimentList = null;
 
 function generateCompliment() {
-  const name = document.getElementById("nameInput").value.trim().toLowerCase();
-  const complimentsToUse = personalizedCompliments[name] || generalCompliments;
+  const complimentsToUse = personalizedCompliments[storedName] || generalCompliments;
 
   if (complimentsToUse !== lastComplimentList) {
     complimentIndex = 0;
@@ -266,7 +267,6 @@ function generateCompliment() {
   if (box) {
     box.textContent = lastGeneratedCompliment;
     if (wrap) {
-      wrap.style.opacity = "";
       wrap.classList.add("visible");
     }
   }
@@ -463,7 +463,7 @@ const personalizedJokes = {
     "Why do Java developers wear glasses? Because they don't C#.",
     "There are 10 types of people in the world: Those who understand binary, and those who don't.",
     "Why was the JavaScript developer sad? Because they didn't know how to null their feelings.",
-    "What's the difference between a dentist and a programmer? A dentist drills into your mouth looking for bugs. A programmer drills into your code looking for the same thing. Neither one ever finds them on the first try.",
+    "A dentist drills your mouth for bugs. A programmer drills their code for the same thing. Neither finds them on the first try. 😂",
   ],
   shawn: [
     "A SQL query walks into a bar, walks up to two tables and asks... \"Can I join you?\"",
@@ -472,10 +472,10 @@ const personalizedJokes = {
     "Why do Java developers wear glasses? Because they don't C#.",
     "There are 10 types of people in the world: Those who understand binary, and those who don't.",
     "Why was the JavaScript developer sad? Because they didn't know how to null their feelings.",
-    "What's the difference between a dentist and a programmer? A dentist drills into your mouth looking for bugs. A programmer drills into your code looking for the same thing. Neither one ever finds them on the first try.",
-    "SHAWN DIDN'T CHOOSE AI. AI CHOSE SHAWN. The bots looked around at all the developers and said: \"No no no... we want THAT one to train us.\" Smart bots. Excellent taste.",
-    "Why does Shawn never get lost? Because they already trained a model on every possible wrong turn. The AI just whispers: \"Recalculating... still Shawn.\"",
-    "Shawn's AI bots after training: \"We have learned human language, logic, and reasoning.\" Shawn: \"Good.\" Bots: \"...We have also learned your coffee order.\" Shawn: \"Outstanding. You pass.\"",
+    "A dentist drills your mouth for bugs. A programmer drills their code for the same thing. Neither finds them on the first try. 😂",
+    "AI didn't choose Shawn. Shawn chose AI first. The bots just confirmed it. Smart bots. Excellent taste. 🤖",
+    "Shawn never gets lost. They already trained a model on every wrong turn. The AI whispers: 'Recalculating... still Shawn.'",
+    "Shawn's bots after training: 'We learned logic and reasoning.' Shawn: 'Good.' Bots: '...And your coffee order.' Shawn: 'Outstanding. You pass.' ✅",
   ],
 };
 
@@ -496,8 +496,7 @@ let laughIndex = 0;
 let lastLaughList = null;
 
 function generateLaugh() {
-  const name = document.getElementById("nameInput").value.trim().toLowerCase();
-  const jokesToUse = personalizedJokes[name] || generalJokes;
+  const jokesToUse = personalizedJokes[storedName] || generalJokes;
 
   if (jokesToUse !== lastLaughList) {
     laughIndex = 0;
@@ -512,7 +511,6 @@ function generateLaugh() {
   if (box) {
     box.textContent = joke;
     if (wrap) {
-      wrap.style.opacity = "";
       wrap.classList.add("visible");
     }
   }
@@ -526,15 +524,14 @@ function goToPage2() {
     return;
   }
 
-  // Update the love label with their name
+  storedName = name.toLowerCase();
+
   document.getElementById("loveLabel").textContent =
     "I'm so happy you're here!";
 
-  // Transition pages
   document.getElementById("page1").classList.remove("active");
   const p2 = document.getElementById("page2");
   p2.classList.add("active");
-
 }
 
 // ===== SHAKE INPUT ANIMATION =====
@@ -565,10 +562,11 @@ function shakeInput() {
 
 // ===== NAVIGATE: PAGE 2 → PAGE 3 =====
 function goToPage3() {
-  const name = document.getElementById("nameInput").value.trim();
+  const raw = document.getElementById("nameInput").value.trim();
+  const displayName = raw || storedName;
 
-  document.getElementById("bombText").textContent = name
-    ? `Go Seize the Day, ${name}!`
+  document.getElementById("bombText").textContent = displayName
+    ? `Go Seize the Day, ${displayName}!`
     : "Go Seize the Day!";
 
   document.getElementById("page2").classList.remove("active");
