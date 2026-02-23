@@ -251,6 +251,15 @@ const generalCompliments = [
 let complimentIndex = 0;
 let lastComplimentList = null;
 
+function showInComplimentBox(text) {
+  const box = document.getElementById("complimentBox");
+  const wrap = document.getElementById("complimentWrap");
+  if (!box || !wrap) return;
+
+  box.textContent = text;
+  wrap.classList.add("visible");
+}
+
 function generateCompliment() {
   const complimentsToUse = personalizedCompliments[storedName] || generalCompliments;
 
@@ -262,14 +271,7 @@ function generateCompliment() {
   lastGeneratedCompliment = complimentsToUse[complimentIndex % complimentsToUse.length];
   complimentIndex++;
 
-  const box = document.getElementById("complimentBox");
-  const wrap = document.getElementById("complimentWrap");
-  if (box) {
-    box.textContent = lastGeneratedCompliment;
-    if (wrap) {
-      wrap.classList.add("visible");
-    }
-  }
+  showInComplimentBox(lastGeneratedCompliment);
 }
 
 let lastGeneratedCompliment = "";
@@ -506,14 +508,7 @@ function generateLaugh() {
   const joke = jokesToUse[laughIndex % jokesToUse.length];
   laughIndex++;
 
-  const box = document.getElementById("complimentBox");
-  const wrap = document.getElementById("complimentWrap");
-  if (box) {
-    box.textContent = joke;
-    if (wrap) {
-      wrap.classList.add("visible");
-    }
-  }
+  showInComplimentBox(joke);
 }
 
 // ===== NAVIGATE: PAGE 1 → PAGE 2 =====
