@@ -270,6 +270,10 @@ const generalCompliments = [
 let complimentIndex = 0;
 let lastComplimentList = null;
 
+function getNormalizedNameKey(name) {
+  return (name || "").trim().toLowerCase();
+}
+
 function showInComplimentBox(text) {
   const box = document.getElementById("complimentBox");
   const wrap = document.getElementById("complimentWrap");
@@ -280,7 +284,8 @@ function showInComplimentBox(text) {
 }
 
 function generateCompliment() {
-  const complimentsToUse = personalizedCompliments[storedName] || generalCompliments;
+  const normalizedName = getNormalizedNameKey(storedName);
+  const complimentsToUse = personalizedCompliments[normalizedName] || generalCompliments;
 
   if (complimentsToUse !== lastComplimentList) {
     complimentIndex = 0;
@@ -548,7 +553,8 @@ let laughIndex = 0;
 let lastLaughList = null;
 
 function generateLaugh() {
-  const jokesToUse = personalizedJokes[storedName] || generalJokes;
+  const normalizedName = getNormalizedNameKey(storedName);
+  const jokesToUse = personalizedJokes[normalizedName] || generalJokes;
 
   if (jokesToUse !== lastLaughList) {
     laughIndex = 0;
@@ -569,7 +575,7 @@ function goToPage2() {
     return;
   }
 
-  storedName = name.toLowerCase();
+  storedName = getNormalizedNameKey(name);
 
   document.getElementById("loveLabel").textContent =
     "I'm so happy you're here!";
