@@ -505,11 +505,10 @@ const personalizedJokes = {
   ],
   judy: [
     "Judy has never been angry a day in her life. Scientists are baffled. El Salvador is not surprised.",
-    "Judy's cooking is so good, her husband Stephen chose bed rest just to make sure she'd bring him a plate. Smart man.",
-    "Judy owns multiple companies and still has time to cook, give gifts, and love everyone unconditionally. The rest of us need to have a serious conversation with ourselves.",
+    "Judy owns a business and still has time to cook, give gifts, and love everyone unconditionally. The rest of us need to have a serious conversation with ourselves.",
     "Judy's accent is so cute that people ask her to repeat herself - not because they didn't hear her, but because they just want to hear it again.",
-    "Judy tends to her roses with the same energy she tends to her businesses - they are thriving, beautiful, and absolutely nobody is giving her trouble.",
-    "She has two Stephens in the house. One company would've been enough to celebrate. Multiple companies AND two Stephens? Judy is simply built different.",
+    "Judy tends to her roses with the same energy she tends to her business - they are thriving, beautiful, and absolutely nobody is giving her trouble.",
+    "She has two Stephens in the house. One business would've been enough to celebrate. One business AND two Stephens? Judy is simply built different.",
     "Judy doesn't get angry. Anger tried once. It apologized and left.",
   ],
   stephen: [
