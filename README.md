@@ -8,19 +8,19 @@ Loloved is a simple and easy to use application for friends and family. Whether 
 
 **Landing Page**
 
-![Landing Page](screenshots/loloved-landing.jpg)
+![Landing Page](Screenshots/loloved-landing.jpg)
 
 **Secondary Page**
 
-![Secondary Page](screenshots/loloved-secondary.jpg)
+![Secondary Page](Screenshots/loloved-secondary.jpg)
 
 **Make Me Laugh**
 
-![Make Me Laugh](screenshots/loloved-laugh.jpg)
+![Make Me Laugh](Screenshots/loloved-laugh.jpg)
 
 **End Page**
 
-![End Page](screenshots/loloved-end.jpg)
+![End Page](Screenshots/loloved-end.jpg)
 
 ---
 
